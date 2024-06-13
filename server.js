@@ -20,7 +20,7 @@ const config = {
 
 // Configurar CORS para permitir requisições do domínio fornecido
 app.use(cors({
-    origin: 'https://tarefa2-gustavomsantoss-projects.vercel.app'
+    origin: 'https://pisafecar.vercel.app'
 }));
 
 app.use(express.json());
@@ -107,7 +107,7 @@ app.post('/validarUsuario', async (req, res) => {
         if (!user) {
             return res.status(404).json({ error: 'Usuário não cadastrado' });
         }
-        res.status(200).json({ message: 'Login bem sucedido.' });
+        res.status(200).json({ message: 'Login bem sucedido.', redirect: '/dashboard' });
     } catch (err) {
         console.error(err);
         res.status(500).json({ error: 'Erro ao buscar dados do usuário.' });
