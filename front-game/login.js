@@ -19,8 +19,8 @@ new Vue({
                     senha: this.senha
                 });
                 alert(response.data.message);
-                if (response.data.redirect) {
-                    window.location.href = response.data.redirect;
+                if (response.status === 200) {
+                    window.location.href = '/dashboard';
                 }
             } catch (error) {
                 console.error(error);
