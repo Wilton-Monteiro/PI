@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Histórico de Manutenção</title>
+    <link rel="stylesheet" href="game-style.css">
+</head>
+<body>
+    <div id="app" class="container">
+        <h1>Histórico de Manutenção</h1>
+        <div class="historico">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Veículo</th>
+                        <th>Peça</th>
+                        <th>Quilometragem Atual</th>
+                        <th>Quilometragem de Troca</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="info in infos" :key="info.veiculo + info.peca">
+                        <td>{{ info.veiculo }}</td>
+                        <td>{{ info.peca }}</td>
+                        <td>{{ info.quilometragem_atual }}</td>
+                        <td>{{ info.quilometragem_troca }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                infos: []
+            },
+            async mounted() {
+                try {
+                    const response = await fetch('https://tarefa2-gustavomsantoss-projects.vercel.app/characters');
+                    const data = await response.json();
+                    this.infos = data;
+                } catch (error) {
+                    console.error('Erro ao buscar informações:', error);
+                }
+            }
+        });
+    </script>
+</body>
+</html>
