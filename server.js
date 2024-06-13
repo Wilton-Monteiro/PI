@@ -36,7 +36,7 @@ app.post('/inserirManutencao', async (req, res) => {
         await sql.connect(config);
         const request = new sql.Request();
         await request.query(`
-            INSERT INTO manutencao (veiculo, peca, quilometragem_atual, quilometragem_troca)
+            INSERT INTO personagem (veiculo, peca, quilometragem_atual, quilometragem_troca)
             VALUES (@veiculo, @peca, @quilometragemAtual, @quilometragemTroca);
         `, {
             veiculo,
@@ -56,7 +56,7 @@ app.get('/characters', async (req, res) => {
     try {
         await sql.connect(config);
         const request = new sql.Request();
-        const result = await request.query("SELECT veiculo, peca, quilometragem_atual, quilometragem_troca FROM manutencao");
+        const result = await request.query("SELECT veiculo, peca, quilometragem_atual, quilometragem_troca FROM personagem");
         res.json(result.recordset);
     } catch (error) {
         console.error('Erro ao buscar dados:', error);
